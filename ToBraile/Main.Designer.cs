@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToBraile));
             this.DargNDropPicBox = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.inputw = new System.Windows.Forms.TextBox();
             this.inputh = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,32 +62,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(177, 274);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 17);
-            this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "4x2 Braile";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
             // inputw
             // 
             this.inputw.Location = new System.Drawing.Point(57, 271);
             this.inputw.MaxLength = 3;
             this.inputw.Name = "inputw";
-            this.inputw.Size = new System.Drawing.Size(44, 20);
+            this.inputw.Size = new System.Drawing.Size(25, 20);
             this.inputw.TabIndex = 5;
             this.inputw.Text = "256";
             this.inputw.KeyUp += new System.Windows.Forms.KeyEventHandler(this.inputw_KeyUp);
             // 
             // inputh
             // 
-            this.inputh.Location = new System.Drawing.Point(127, 272);
+            this.inputh.Location = new System.Drawing.Point(108, 272);
             this.inputh.MaxLength = 3;
             this.inputh.Name = "inputh";
-            this.inputh.Size = new System.Drawing.Size(44, 20);
+            this.inputh.Size = new System.Drawing.Size(25, 20);
             this.inputh.TabIndex = 6;
             this.inputh.Text = "256";
             this.inputh.KeyUp += new System.Windows.Forms.KeyEventHandler(this.inputh_KeyUp);
@@ -97,7 +86,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label1.Location = new System.Drawing.Point(4, -6);
+            this.label1.Location = new System.Drawing.Point(139, 274);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 7;
@@ -106,7 +95,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(107, 274);
+            this.label2.Location = new System.Drawing.Point(88, 274);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 8;
@@ -131,7 +120,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputh);
             this.Controls.Add(this.inputw);
-            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.DargNDropPicBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -147,7 +135,6 @@
 
         private System.Windows.Forms.PictureBox DargNDropPicBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox inputw;
         private System.Windows.Forms.TextBox inputh;
         private System.Windows.Forms.Label label1;

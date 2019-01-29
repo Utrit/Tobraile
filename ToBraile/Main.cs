@@ -14,7 +14,7 @@ namespace ToBraile
     {
         ImageWork workwithimage = new ImageWork();
         Bitmap gimage = null;
-        string version = "v0.0.0";
+        string version = "v0.1.0";
         public ToBraile()
         {
             InitializeComponent();
@@ -57,7 +57,39 @@ namespace ToBraile
             }
             catch { inputh.Text = "1"; }
         }
+        private char getbraile(int x, int y, Bitmap image)
+        {
+            int size = 10240;
+            try
+            {
+                
+                if (image.GetPixel(x, y).R > 0) size += 1;
+                if (image.GetPixel(x, y + 1).R > 0) size += 2;
+                if (image.GetPixel(x, y + 2).R > 0) size += 4;
+                if (image.GetPixel(x + 1, y).R > 0) size += 8;
+                if (image.GetPixel(x + 1, y + 1).R > 0) size += 16;
+                if (image.GetPixel(x + 1, y + 2).R > 0) size += 32;
+                if (image.GetPixel(x, y + 3).R > 0) size += 64;
+                if (image.GetPixel(x + 1, y + 3).R > 0) size += 128;
+                return (char)size;
+            }
+            catch
+            {
+                return (char)size;
+            }
 
+        }
+        private string GenerateBraile(Bitmap image)
+        {
+            string res = "";
+            for (int i = 0; i <image.Height/4; i++) {
+                res += "\n";
+                for (int j = 0; j <image.Width/2; j++) {
+                    res+=getbraile(j * 2, i * 4, image);
+                }
+            }
+            return res;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (gimage != null)
@@ -65,6 +97,8 @@ namespace ToBraile
                 Bitmap bwimage = workwithimage.resizeImage(gimage, new Size(int.Parse(inputw.Text), int.Parse(inputh.Text)));
                 bwimage = workwithimage.MakeBW(bwimage);
                 bwimage = workwithimage.dithering(bwimage);
+                Clipboard.Clear();
+                Clipboard.SetText(GenerateBraile(bwimage));
                 DargNDropPicBox.Image = bwimage;
             }
         }
