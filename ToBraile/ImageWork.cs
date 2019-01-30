@@ -15,10 +15,23 @@ namespace ToBraile
         public Bitmap MakeBW(Bitmap imageinput)
         {
             for (int i = 0; i < imageinput.Height; i++)
-                for (int j = 0; j < imageinput.Width; j++) {
+                for (int j = 0; j < imageinput.Width; j++)
+                {
                     imageinput.SetPixel(j, i, GetMiddleColor(imageinput.GetPixel(j, i)));
                 }
             return imageinput;
+        }
+        public Bitmap MakeNegative(Bitmap imageinput)
+        {
+            for (int i = 0; i < imageinput.Height; i++)
+                for (int j = 0; j < imageinput.Width; j++) {
+                    imageinput.SetPixel(j, i, ReversRgb(imageinput.GetPixel(j, i)));
+                }
+            return imageinput;
+        }
+        private Color ReversRgb(Color colorinput)
+        {
+            return Color.FromArgb(255 - colorinput.R, 255 - colorinput.G, 255 - colorinput.B);
         }
         private Color GetMiddleColor(Color colorinput)
         {
@@ -55,6 +68,11 @@ namespace ToBraile
         public Bitmap resizeImage(Bitmap imgToResize, Size size)
         {
             return (new Bitmap(imgToResize, size));
+        }
+        public Bitmap cropImage(Bitmap imgToCrop, Rectangle size)
+        {
+            Bitmap nb = imgToCrop.Clone(size,System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            return nb;
         }
 
     }

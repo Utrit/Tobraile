@@ -14,7 +14,7 @@ namespace ToBraile
     {
         ImageWork workwithimage = new ImageWork();
         Bitmap gimage = null;
-        string version = "v0.1.0";
+        const string version = "v0.1.1";
         public ToBraile()
         {
             InitializeComponent();
@@ -94,15 +94,40 @@ namespace ToBraile
         {
             if (gimage != null)
             {
-                Bitmap bwimage = workwithimage.resizeImage(gimage, new Size(int.Parse(inputw.Text), int.Parse(inputh.Text)));
-                bwimage = workwithimage.MakeBW(bwimage);
-                bwimage = workwithimage.dithering(bwimage);
-                Clipboard.Clear();
-                Clipboard.SetText(GenerateBraile(bwimage));
-                DargNDropPicBox.Image = bwimage;
+                Bitmap bwimage = null;
+                if (FitCheck.Checked)
+                {
+                     bwimage = workwithimage.resizeImage(gimage, new Size(int.Parse(inputw.Text), int.Parse(inputh.Text)));
+                }
+                else
+                {
+                    if(gimage.Width>256 || gimage.Height > 256)
+                    {
+                         bwimage = workwithimage.cropImage(gimage,new Rectangle(0,0,256, 256));
+                    }
+                    else
+                    {
+                        bwimage = gimage;
+                    }
+                }
+                if (bwimage != null)
+                {
+                    bwimage = workwithimage.MakeBW(bwimage);
+                    bwimage = workwithimage.dithering(bwimage);
+                    Clipboard.Clear();
+                    Clipboard.SetText(GenerateBraile(bwimage));
+                    DargNDropPicBox.Image = bwimage;
+                }
             }
         }
 
-    
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (gimage != null)
+            {
+                gimage = workwithimage.MakeNegative(gimage);
+                DargNDropPicBox.Image = gimage;
+            }
+        }
     }
 }
